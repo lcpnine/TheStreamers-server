@@ -11,9 +11,9 @@ const signIn = async (req: Request, res: Response): Promise<Response> => {
 
     const validPassword = await comparePassword(password, user.password);
     if (validPassword) {
-      return res.status(400).send({ message: 'Invalid password' });
+      return res.status(200).send({ message: 'Signed in successfully' });
     }
-    return res.status(200).send({ message: 'Signed in successfully' });
+    return res.status(400).send({ message: 'Invalid password' });
   } catch (err) {
     return res
       .status(500)
