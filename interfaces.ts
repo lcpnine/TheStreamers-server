@@ -4,4 +4,9 @@ interface User {
   password: string;
 }
 
-export { User };
+interface UserPayload {
+  username: string;
+  email: string;
+}
+
+export { User, UserPayload };
