@@ -1,5 +1,5 @@
 import checkEmail from './checkEmail';
-// import findPassword from './findPassword';
+import updatePassword from './updatePassword';
 import signin from './signin';
 import signup from './signup';
 import sendCode from './sendCode';
@@ -7,7 +7,7 @@ import checkCode from './checkCode';
 
 export default {
   checkEmail,
-  // findPassword,
+  updatePassword,
   signin,
   signup,
   sendCode,
