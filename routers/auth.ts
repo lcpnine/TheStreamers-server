@@ -17,6 +17,6 @@ router.post('/signup', (req, res) => authController.signup(req, res));
 
 // // send code to Email and check
 router.post('/sendcode', (req, res) => authController.sendCode(req, res));
-// router.post('/checkcode', (req, res) => authController.checkCode(req, res));
+router.post('/checkcode', (req, res) => authController.checkCode(req, res));
 
 export default router;

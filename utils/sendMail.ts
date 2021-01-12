@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import redis from '../redis';
+import { redisClient } from '../redis';
 import { createCode } from './crypto';
 dotenv.config();
 
@@ -18,7 +18,7 @@ const sendMail = async (email: string): Promise<void> => {
 
   const code = createCode(email);
 
-  await redis.set(email, code, 'EX', 600); // set code to be expired after 10 minutes
+  await redisClient.set(email, code, 'EX', 600); // set code to be expired after 10 minutes
 
   // send mail with defined transport object
   const info = await transporter.sendMail({

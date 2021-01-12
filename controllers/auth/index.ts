@@ -3,7 +3,7 @@
 // import signin from 'signin';
 import signup from './signup';
 import sendCode from './sendCode';
-// import checkCode from './checkCode';
+import checkCode from './checkCode';
 
 export default {
   // checkUsername,
@@ -11,5 +11,5 @@ export default {
   // signin,
   signup,
   sendCode,
-  // checkCode,
+  checkCode,
 };

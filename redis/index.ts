@@ -1,4 +1,7 @@
 import redis from 'redis';
-const client = redis.createClient();
+import { promisify } from 'util';
 
-export default client;
+const redisClient = redis.createClient();
+const redisAsyncGet = promisify(redisClient.get).bind(redisClient);
+
+export { redisClient, redisAsyncGet };
