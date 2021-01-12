@@ -1,21 +1,15 @@
 import { Request, Response } from 'express';
-import prisma from '../../prisma/prisma';
+import createUser from '../../models/auth/createUser';
 
 const signUp = async (req: Request, res: Response): Promise<Response> => {
   const { username, email, password } = req.body;
   try {
-    await prisma.user.create({
-      data: {
-        username,
-        email,
-        password,
-      },
-    });
+    await createUser(email, password, username);
     return res.status(201).send({ message: 'Signed up successfully' });
   } catch (err) {
     return res
       .status(500)
-      .send({ message: 'Sign Up is failed. Please try again.' });
+      .send({ message: 'Sign Up failed. Please try again.' });
   }
 };
 
