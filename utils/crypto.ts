@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import randomInt from './randomInt';
 dotenv.config();
 
-const saltRounds = parseInt(process.env.SALT_ROUNDS);
+const saltRounds = parseInt(process.env.SALT_ROUNDS || '7');
 
 const encryptPassword = async (password: string): Promise<string> => {
   const hash = await bcrypt.hash(password, saltRounds);

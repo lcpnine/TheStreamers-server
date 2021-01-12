@@ -8,14 +8,15 @@
     "outDir": "./build",
     "rootDir": "./",
     "esModuleInterop": true,
-    "alwaysStrict": true,
+    "strict": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["./node_modules/@types", "./customTypes"],
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
   ],
   "include": [
     "**/*.ts",
