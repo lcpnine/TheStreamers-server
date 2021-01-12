@@ -1,7 +1,7 @@
 {
-  "name": "sync-memo-client",
+  "name": "the-streamers-server",
   "version": "1.0.0",
-  "description": "sync-memo's server part with Express and Typescript",
+  "description": "The Streamer's server part with typescript",
   "main": "app.ts",
   "scripts": {
     "start": "nodemon app.ts",
