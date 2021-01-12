@@ -16,7 +16,7 @@ const sendMail = async (email: string): Promise<void> => {
     },
   });
 
-  const code = createCode(email);
+  const code = await createCode(email);
 
   await redisClient.set(email, code, 'EX', 600); // set code to be expired after 10 minutes
 

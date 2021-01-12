@@ -1,24 +1,31 @@
-import sha256 from 'crypto-js/sha256';
-import hmacSHA512 from 'crypto-js/hmac-sha512';
-import Base64 from 'crypto-js/enc-base64';
+import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import randomInt from './randomInt';
 dotenv.config();
 
-const privateKey = process.env.PRIVATE_KEY;
+const saltRounds = parseInt(process.env.SALT_ROUNDS);
 
-const encryptPassword = (message: string): string => {
-  const hashDigest = sha256(randomInt(9999) + message);
-  const hmacDigest = Base64.stringify(hmacSHA512(hashDigest, privateKey));
-  return hmacDigest;
+const encryptPassword = async (password: string): Promise<string> => {
+  const hash = await bcrypt.hash(password, saltRounds);
+  return hash;
 };
 
-const createCode = (email: string): string => {
-  const hashedMail = encryptPassword(email);
+const comparePassword = async (
+  password: string,
+  hash: string
+): Promise<boolean> => {
+  const result = await bcrypt.compare(password, hash, (err, same) => {
+    if (err) throw err;
+  });
+  return result;
+};
+
+const createCode = async (email: string): Promise<string> => {
+  const hashedMail = await encryptPassword(email);
   return Array.from(
     { length: 5 },
-    () => hashedMail[Math.floor(Math.random() * hashedMail.length)]
+    () => hashedMail[randomInt(hashedMail.length)]
   ).join('');
 };
 
-export { encryptPassword, createCode };
+export { encryptPassword, comparePassword, createCode };
