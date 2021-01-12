@@ -1,7 +1,7 @@
 import { UserPayload } from '../interfaces';
 
-declare module "express" {
+declare module 'express' {
   export interface Request {
-    user ?: UserPayload;
+    user?: UserPayload;
   }
 }
