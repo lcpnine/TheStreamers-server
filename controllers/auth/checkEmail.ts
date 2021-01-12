@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import findEmail from './../../models/auth/findEmail';
+import findUser from './../../models/auth/findUser';
 
 const checkEmail = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { email } = req.body;
-    const mailExist = await findEmail(email);
-    if (mailExist) {
+    const user = await findUser(email);
+    if (user) {
       return res.status(400).send({ message: 'Invalid email' });
     }
     return res.status(200).send({ message: 'Valid email' });

@@ -1,10 +1,11 @@
 import prisma from '../../prisma/prisma';
+import { User } from '../../interfaces';
 
-const findEmail = async (email: string): Promise<boolean> => {
+const findEmail = async (email: string): Promise<User> => {
   const user = await prisma.user.findFirst({
     where: { email },
   });
-  return user ? true : false;
+  return user;
 };
 
 export default findEmail;
