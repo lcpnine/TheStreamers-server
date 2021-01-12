@@ -4,7 +4,7 @@ import authController from '../controllers/auth';
 const router = Router();
 
 // // sign in
-// router.post('/signin', (req, res) => authController.signin(req, res));
+router.post('/signin', (req, res) => authController.signin(req, res));
 
 // sign up
 router.post('/checkemail', (req, res) => authController.checkEmail(req, res));
