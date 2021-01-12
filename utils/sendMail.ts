@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import { createCode } from './crypto';
 dotenv.config();
 
 const sendMail = async (email: string): Promise<void> => {
@@ -14,6 +15,8 @@ const sendMail = async (email: string): Promise<void> => {
     },
   });
 
+  const code = createCode(email);
+
   // send mail with defined transport object
   const info = await transporter.sendMail({
     from: '"Utek 👻" <lcpnine@naver.com>', // sender address
@@ -25,7 +28,7 @@ const sendMail = async (email: string): Promise<void> => {
         <div>Thanks for having interests on us. We are <b>'The Streamers'</b>!</div>
         <div>Please fill the blank on your sign up page with code below</div>
         <br/>
-        <div style="display: flex; justify-content:center;">Code: &emsp; <b>cooodddeeee</b></div>
+        <div style="display: flex; justify-content:center;">Code: &emsp; <b>${code}</b></div>
       </div>
     </div>
     `, // html body
